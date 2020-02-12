@@ -2,17 +2,14 @@
 
 var mysql = require('mysql');
 
-//local mysql db connection
-var connection = mysql.createConnection({
-    host: "hyper-v1.lib.kth.se",
-    port: "3306",
-    user: "primo",
-    password: process.env.DATABASE_PASSWORD,
-    database: "primo"
+var pool = mysql.createPool({
+    connectionLimit : 100, //important
+    host     : process.env.DATABASE_SERVER,
+    port     : process.env.DATABASE_PORT,
+    user     : process.env.DATABASE_USER,
+    password : process.env.DATABASE_PASSWORD,
+    database : process.env.DATABASE_NAME,
+    debug    :  false
 });
 
-connection.connect(function(err) {
-    if (err) throw err;
-});
-
-module.exports = connection;
+module.exports = pool;

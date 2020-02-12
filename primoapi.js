@@ -4,9 +4,7 @@ const express = require('express'),
   port = process.env.PORT || 3003;
 
 app.listen(port);
-
-console.log('API server started on: ' + port);
-
+console.log("Server started at port: " + port)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -17,5 +15,5 @@ app.use(function(req, res, next) {
 
 require('dotenv').config();
 
-var routes = require('./routes/appRoutes.js'); //importing route
-routes(app); //register the route
+var routes = require('./routes/appRoutes.js');
+routes(app);
